@@ -21,7 +21,7 @@ public abstract class BlockItemMixin extends Item {
 
 	@Override
 	public Optional<TooltipData> getTooltipData(ItemStack stack) {
-		if (stack.isOf(Items.SHULKER_BOX)) {
+		if (Block.getBlockFromItem(stack.getItem()) instanceof ShulkerBoxBlock) {
 			NbtCompound nbt = BlockItem.getBlockEntityNbtFromStack(stack);
 			if (nbt != null) {
 				DefaultedList<ItemStack> inventory = DefaultedList.ofSize(27, ItemStack.EMPTY);
