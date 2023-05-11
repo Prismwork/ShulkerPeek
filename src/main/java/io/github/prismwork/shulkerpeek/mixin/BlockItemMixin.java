@@ -3,6 +3,8 @@ package io.github.prismwork.shulkerpeek.mixin;
 import net.minecraft.client.item.BundleTooltipData;
 import net.minecraft.client.item.TooltipData;
 import net.minecraft.inventory.Inventories;
+import net.minecraft.block.Block;
+import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -21,7 +23,7 @@ public abstract class BlockItemMixin extends Item {
 
 	@Override
 	public Optional<TooltipData> getTooltipData(ItemStack stack) {
-		if (stack.isOf(Items.SHULKER_BOX)) {
+		if (Block.getBlockFromItem(stack.getItem()) instanceof ShulkerBoxBlock) {
 			NbtCompound nbt = BlockItem.getBlockEntityNbtFromStack(stack);
 			if (nbt != null) {
 				DefaultedList<ItemStack> inventory = DefaultedList.ofSize(27, ItemStack.EMPTY);
